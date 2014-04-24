@@ -1,0 +1,16 @@
+/* line 9, ../scss/typography.scss */
+body {
+  font-family: "soleil",sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px; }
+
+/* line 17, ../scss/typography.scss */
+.logo {
+  font-size: 2.625rem;
+  line-height: 3rem;
+  font-family: "abigail",fantasy;
+  font-style: normal;
+  font-weight: 400;
+  color: #ece9ef; }

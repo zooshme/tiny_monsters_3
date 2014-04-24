@@ -1,0 +1,18 @@
+/* line 9, ../scss/layout.scss */
+body {
+  background-color: #ece9ef; }
+
+/* line 13, ../scss/layout.scss */
+.header {
+  # height: 36px;
+  background-color: #663773; }
+
+/* line 18, ../scss/layout.scss */
+.inner {
+  width: 1200px;
+  margin: 0 auto; }
+
+/* line 24, ../scss/layout.scss */
+.footer {
+  background-color: #36293a;
+  color: #ece9ef; }

@@ -1,0 +1,23 @@
+@mixin clearfix {
+	display: inline-block;
+	&:after {
+		content: '';
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	* html & { height: 1px }
+}
+
+@mixin body-text($style, $weight) {
+	font-family: "sommet",sans-serif;
+	font-style: $style;
+	font-weight: $weight;
+}
+
+@mixin heading-text($style, $weight) {
+	font-family: "futura-pt-condensed",sans-serif;
+	font-style: $style;
+	font-weight: $weight;
+}

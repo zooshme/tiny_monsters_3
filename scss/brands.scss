@@ -1,0 +1,29 @@
+@import 'compass/css3/background-size';
+
+.brands {
+	font-size: 0;
+		# height: 80px;
+	margin-bottom: 26px;
+
+	.brand {
+		# display: inline-block;
+		width: 10%;
+		text-align: center;
+		background-color: $white;
+		border-bottom: 1px solid hsla(0,0,0,.15);
+		border-left: 1px solid hsla(0,0,0,.15);
+		border-right: 1px solid hsla(0,0,0,.15);
+
+
+		a {
+			display: block;
+			height: 100px;
+			width: 100%;
+			background-position: 50% 50%;
+			@include background-size(auto 70%);	
+			background-repeat: no-repeat;
+			background-color: $white;
+			
+		}
+	}
+}

@@ -1,0 +1,64 @@
+@import 'compass/css3/background-size';
+
+.categories-wrapper {
+	background-color: $white;
+}
+
+.categories {
+	width: 65%;
+	margin: 0 auto;
+	font-size: 0;
+	padding: 16px 0 10px;
+
+	.category {
+		width: 23.5%;
+		margin-right: 2%;
+		display: inline-block;
+		background-color: $white;
+		border: 1px solid hsla(0,0,0,.15);
+		box-sizing: border-box;
+		background-color: $light-grey;
+
+		header {
+			@include clearfix;
+			# box-sizing: border-box;
+			display: block;
+		}
+
+		.name {
+			padding: 6px 16px 0;
+		}
+
+		.thumb {
+			width: 100%;
+			height: 100px;
+			@include background-size(cover);	
+			background-position: 50% 50%;
+			#border-bottom: 1px solid hsla(0,0,0,.35);
+			display: block;
+		}
+
+		.description {
+			padding: 0 16px 26px;
+			color: $grey;
+		}
+		
+		.view-details {
+			@include heading-text('normal', 700);
+			background-color: $green;
+			color: $white;
+			font-weight: 300;
+			padding: 6px 10px;
+			margin: 10px 16px 10px;
+			display: block;
+			font-size: 10px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+
+		}
+	}
+
+	.category:last-child {
+		margin-right: 0;
+	}
+}

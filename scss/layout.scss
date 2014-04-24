@@ -1,0 +1,31 @@
+body {
+	background-color: $grey;
+}
+
+.main-header {
+	padding: 10px 0 16px;
+	background-color: $red;
+	# margin-bottom: 10px;
+}
+
+.inner {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.inner.no-padding {
+	padding: 0 0;
+}
+
+.inner.light-background {
+	background-color: $light-grey;
+}
+
+
+.main-footer {
+	padding: 26px 0 42px;
+	background-color: $black;
+	color: $white;
+}

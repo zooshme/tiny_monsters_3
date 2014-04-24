@@ -1,0 +1,39 @@
+.row {
+	font-size: 0;
+	margin-bottom: 26px;
+}
+
+
+// Desktop
+// ==================================
+
+@media all and (min-width: 1025px) {
+	.d-col1of4 {
+		display: inline-block;
+		width: 23.5%;
+		margin-right: 2%;
+		font-size: 16px;
+		vertical-align: top;
+	}
+
+	.d-col1of4:nth-child(4n + 4) {
+		margin-right: 0;
+	}
+}
+
+// Tablet
+// ==================================
+
+@media all and (max-width: 1024px) and (min-width: 681px) {
+	.t-col1of2 {
+		display: inline-block;
+		width: 47.5%;
+		margin-right: 5%;
+		font-size: 16px;
+		vertical-align: top;
+	}
+
+	.t-col1of2:nth-child(2n + 2) {
+		margin-right: 0;
+	}
+}

@@ -1,0 +1,71 @@
+@import url("http://weloveiconfonts.com/api/?family=entypo");
+
+body {
+	@include body-text('normal', 400);
+	background-color: $grey;
+	font-size: 16px;
+	line-height: 20px;
+	color: $grey;
+}
+
+.logo {
+	font-size: 2.625rem;
+	line-height: 3rem;
+	@include heading-text('normal', 700);
+	color: $white;
+	text-transform: uppercase;
+}
+
+.tagline {
+	color: $white;
+}
+
+.large-heading {
+	@include heading-text('normal', 700);
+	color: $red;
+	text-transform: uppercase;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-size: 26px;
+	line-height: 34px;
+
+	a:before {
+		margin-right: 6px;
+	}
+}
+
+
+
+.medium-heading {
+	@include heading-text('normal', 700);
+	font-size: 16px;
+	line-height: 20px;
+	text-transform: uppercase;
+	margin-bottom: 6px;
+
+	a:before {
+		margin-right: 4px;
+	}
+}
+
+.small-heading {
+	@include heading-text('normal', 500);
+	font-size: 16px;
+	line-height: 20px;
+
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.description {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
