@@ -150,10 +150,21 @@ app.get('/api/offers', function(req, res) {
                         callback(err, cursor)
                     });
             }], function(err, results) {
+                var offers, models, brands;
+
+
+                offers = results[0];
+                models = results[1];
+                brands = results[2];
+
+                console.log(typeof models, typeof brands);
+
+
+
                 res.json({
                     offers: results[0],
-                    models: typeof results[1] === 'Array' ? results[1] : [ results[1] ],
-                    brands: typeof results[2] === 'Array' ? results[2] : [ results[2] ]
+                    models: typeof results[1] === 'array' ? results[1] : [ results[1] ],
+                    brands: typeof results[2] === 'array' ? results[2] : [ results[2] ]
                 });
                 conn.close();
             });

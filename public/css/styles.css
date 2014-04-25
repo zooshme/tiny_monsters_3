@@ -324,20 +324,21 @@ a {
   /* line 5, ../scss/special_offers.scss */
   .special-offers-view .special-offer {
     width: 200px;
-    height: 200px; }
-    /* line 9, ../scss/special_offers.scss */
+    height: 200px;
+    margin-right: 0; }
+    /* line 10, ../scss/special_offers.scss */
     .special-offers-view .special-offer .thumb-wrapper {
       width: 100%;
       background-color: black; }
-      /* line 13, ../scss/special_offers.scss */
+      /* line 14, ../scss/special_offers.scss */
       .special-offers-view .special-offer .thumb-wrapper .thumb {
         width: 100%; }
-    /* line 18, ../scss/special_offers.scss */
+    /* line 19, ../scss/special_offers.scss */
     .special-offers-view .special-offer .name {
       background-color: #40423f;
       padding: 6px 16px 10px;
       margin: 0; }
-  /* line 25, ../scss/special_offers.scss */
+  /* line 26, ../scss/special_offers.scss */
   .special-offers-view .special-offer.emphasis {
     width: 50%;
     height: 300px; }
