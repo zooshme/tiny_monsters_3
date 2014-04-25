@@ -1,7 +1,8 @@
 App = require '../app'
 
-App.Models.Brand = Backbone.RelationalModel.extend
-	url: -> 
-		return '/api/brand/' + @id
+App.Brand = DS.Model.extend
+	name: DS.attr 'string'
+	description: DS.attr 'string'
 
-module.exports = App.Models.Brand
+	
+module.exports = App.Brand

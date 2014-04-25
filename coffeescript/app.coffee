@@ -1,17 +1,20 @@
-Router = Backbone.Router.extend
-	routes:
-		'' : 'home'
-		'toy/:id': 'toy'
-		'categories': 'categories'
-		'special-offers': 'special_offers'
+App = window.App = Ember.Application.create()
 
-App =
-	Models: {},
-	Views: {},
-	Collections: {},
-	Routes: {},
-	Config: {},
-	Router: new Router()
+App.ApplicationView = Ember.View.extend
+	classNames: ['page']
+
+DS.RESTAdapter.reopen
+	namespace: 'api'
+
+App.ApplicationAdapter = DS.RESTAdapter.extend()
+
+App.ArrayTransform = DS.Transform.extend
+	serialize: (value) ->
+		return value
+	deserialize: (value) ->
+		return value
 
 
+App.Router.map ->
+	
 module.exports = App

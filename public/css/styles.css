@@ -60,7 +60,7 @@ body {
   font-family: "sommet",sans-serif;
   font-style: "normal";
   font-weight: 400;
-  background-color: #40423f;
+  background-color: #e1e1e1;
   font-size: 16px;
   line-height: 20px;
   color: #40423f; }
@@ -83,13 +83,13 @@ body {
 .large-heading {
   font-family: "futura-pt-condensed",sans-serif;
   font-style: "normal";
-  font-weight: 700;
-  color: #d82401;
+  font-weight: 400;
+  color: white;
   text-transform: uppercase;
   display: inline-block;
   margin-bottom: 10px;
-  font-size: 26px;
-  line-height: 34px; }
+  font-size: 68px;
+  line-height: 74px; }
   /* line 32, ../scss/typography.scss */
   .large-heading a:before {
     margin-right: 6px; }
@@ -160,108 +160,74 @@ a {
   .t-col1of2:nth-child(2n + 2) {
     margin-right: 0; } }
 /* line 1, ../scss/layout.scss */
-body {
-  background-color: #40423f; }
-
-/* line 5, ../scss/layout.scss */
-.main-header {
+.header-view {
   padding: 10px 0 16px;
   background-color: #d82401;
   # margin-bottom: 10px; }
 
-/* line 11, ../scss/layout.scss */
+/* line 7, ../scss/layout.scss */
 .inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 16px 26px;
   box-sizing: border-box; }
 
-/* line 18, ../scss/layout.scss */
+/* line 14, ../scss/layout.scss */
 .inner.no-padding {
-  padding: 0 0; }
+  padding: 0; }
 
-/* line 22, ../scss/layout.scss */
+/* line 18, ../scss/layout.scss */
 .inner.light-background {
   background-color: #e1e1e1; }
 
-/* line 27, ../scss/layout.scss */
-.main-footer {
+/* line 23, ../scss/layout.scss */
+.footer-view {
   padding: 26px 0 42px;
   background-color: black;
   color: white; }
 
-/* line 2, ../scss/toys.scss */
-.toys .toy {
-  margin-bottom: 16px;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-sizing: border-box; }
-  /* line 8, ../scss/toys.scss */
-  .toys .toy header {
-    display: inline-block;
-    padding: 26px 16px 0;
-    # box-sizing: border-box;
-    display: block; }
-    /* line 3, ../scss/extras.scss */
-    .toys .toy header:after {
-      content: '';
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    /* line 10, ../scss/extras.scss */
-    * html .toys .toy header {
-      height: 1px; }
-  /* line 15, ../scss/toys.scss */
-  .toys .toy .thumb {
-    width: 100%;
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.35);
-    display: block; }
-  /* line 21, ../scss/toys.scss */
-  .toys .toy .name {
-    float: left; }
-  /* line 25, ../scss/toys.scss */
-  .toys .toy .description {
-    padding: 0 16px 26px;
-    color: #40423f; }
-  /* line 30, ../scss/toys.scss */
-  .toys .toy .price {
-    float: right; }
-  /* line 34, ../scss/toys.scss */
-  .toys .toy .view-details {
-    font-family: "futura-pt-condensed",sans-serif;
-    font-style: "normal";
-    font-weight: 700;
-    background-color: #4e6642;
-    color: white;
-    font-weight: 300;
-    padding: 6px 10px;
-    margin: 10px 16px 10px;
-    display: block;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px; }
-
 /* line 3, ../scss/categories.scss */
 .categories-wrapper {
   background-color: white; }
+  /* line 6, ../scss/categories.scss */
+  .categories-wrapper .category-expanded {
+    padding: 0 26px;
+    height: 600px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+    /* line 11, ../scss/categories.scss */
+    .categories-wrapper .category-expanded header {
+      background-color: #40423f;
+      margin: 0 -26px;
+      padding: 42px 26px; }
+    /* line 17, ../scss/categories.scss */
+    .categories-wrapper .category-expanded .name {
+      color: white; }
+    /* line 21, ../scss/categories.scss */
+    .categories-wrapper .category-expanded .description {
+      font-size: 26px;
+      line-height: 34px;
+      width: 50%;
+      color: white; }
 
-/* line 7, ../scss/categories.scss */
+/* line 30, ../scss/categories.scss */
 .categories {
-  width: 65%;
   margin: 0 auto;
   font-size: 0;
-  padding: 16px 0 10px; }
-  /* line 13, ../scss/categories.scss */
+  #border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+  /* line 35, ../scss/categories.scss */
   .categories .category {
-    width: 23.5%;
-    margin-right: 2%;
+    width: 25%;
+    #margin-right: 2%;
     display: inline-block;
     background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    #border: 1px solid rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
-    background-color: #e1e1e1; }
-    /* line 22, ../scss/categories.scss */
+    background-color: #e1e1e1;
+    cursor: pointer; }
+    /* line 45, ../scss/categories.scss */
     .categories .category header {
       display: inline-block;
       # box-sizing: border-box;
@@ -276,13 +242,14 @@ body {
       /* line 10, ../scss/extras.scss */
       * html .categories .category header {
         height: 1px; }
-    /* line 28, ../scss/categories.scss */
+    /* line 51, ../scss/categories.scss */
     .categories .category .name {
-      padding: 6px 16px 0; }
-    /* line 32, ../scss/categories.scss */
+      padding: 10px 16px 10px;
+      margin: 0; }
+    /* line 56, ../scss/categories.scss */
     .categories .category .thumb {
       width: 100%;
-      height: 100px;
+      height: 200px;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -290,11 +257,11 @@ body {
       background-position: 50% 50%;
       #border-bottom: 1px solid rgba(0, 0, 0, 0.35);
       display: block; }
-    /* line 41, ../scss/categories.scss */
+    /* line 65, ../scss/categories.scss */
     .categories .category .description {
       padding: 0 16px 26px;
       color: #40423f; }
-    /* line 46, ../scss/categories.scss */
+    /* line 70, ../scss/categories.scss */
     .categories .category .view-details {
       font-family: "futura-pt-condensed",sans-serif;
       font-style: "normal";
@@ -308,7 +275,13 @@ body {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 1px; }
-  /* line 61, ../scss/categories.scss */
+  /* line 85, ../scss/categories.scss */
+  .categories .category.active {
+    background-color: #40423f; }
+    /* line 88, ../scss/categories.scss */
+    .categories .category.active .name {
+      color: #d82401; }
+  /* line 93, ../scss/categories.scss */
   .categories .category:last-child {
     margin-right: 0; }
 

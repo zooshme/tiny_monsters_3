@@ -1,7 +1,8 @@
 App = require '../app'
 
-App.Models.Category = Backbone.Model.extend
-	url: ->
-		return '/api/category/' + @id
-
-module.exports = App.Models.Category
+App.Category = DS.Model.extend
+	name: DS.attr 'string'
+	description: DS.attr 'string'
+	photos: DS.attr 'array'
+	
+module.exports = App.Category

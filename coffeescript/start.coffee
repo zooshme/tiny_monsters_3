@@ -1,27 +1,29 @@
+require './app'
+
 # Models
 # ====================================
 require './models/category'
-require './models/toy'
-require './models/car'
 require './models/brand'
+require './models/model'
+require './models/offer'
 
-# Collections
+# Controllers
 # ====================================
-require './collections/toys'
-require './collections/categories'
-require './collections/brands'
-require './collections/cars'
+require './controllers/index'
 
 # Routes
 # ====================================
-require './routes/home'
-require './routes/toy'
-require './routes/categories'
+require './routes/index'
 
 # Views
 # ====================================
-require './views/home'
-require './views/categories'
+require './views/special_offers_collection'	
+require './views/categories_collection'	
+require './views/category_expanded'	
 
-Backbone.history.start()
-	
+require './views/header'
+require './views/footer'
+
+
+
+require './views/index'	

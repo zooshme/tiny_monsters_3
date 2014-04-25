@@ -1,8 +1,4 @@
-body {
-	background-color: $grey;
-}
-
-.main-header {
+.header-view {
 	padding: 10px 0 16px;
 	background-color: $red;
 	# margin-bottom: 10px;
@@ -11,12 +7,12 @@ body {
 .inner {
 	max-width: 1280px;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 16px 26px;
 	box-sizing: border-box;
 }
 
 .inner.no-padding {
-	padding: 0 0;
+	padding: 0;
 }
 
 .inner.light-background {
@@ -24,7 +20,7 @@ body {
 }
 
 
-.main-footer {
+.footer-view {
 	padding: 26px 0 42px;
 	background-color: $black;
 	color: $white;
