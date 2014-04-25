@@ -94,18 +94,17 @@ App = require('../app');
 
 App.Offer = DS.Model.extend({
   name: DS.attr('string'),
-  photos: DS.attr('array'),
   description: DS.attr('string'),
   price: DS.attr('number'),
   brand: DS.belongsTo('brand', {
-    async: true
+    embedded: 'always'
   }),
   model: DS.belongsTo('model', {
-    async: true
+    embedded: 'always'
   }),
   thumb: function() {
-			return this.get('photos').objectAt(0);
-		}.property('photos.@each'),
+			return '/images/offers/' + this.get('brand.name').toLowerCase().replace(/\s/, '_') + '/' + this.get('model.name').toLowerCase().replace(/\s/, '_') +  '/' + this.get('name').toLowerCase().replace(/\s/g, '_') + '/0.png';
+		}.property('brand', 'model'),
   fPrice: function() {
 			return this.get('price').toFixed(2)
 		}.property('price')
@@ -216,6 +215,24 @@ App.CategoryExpandedView = Ember.View.extend({
   classNames: 'category-expanded',
   attributeBindings: ['style'],
   contentBinding: 'controller.selected_category',
+  didInsertElement: function() {
+    return this.rearrangeOffers();
+  },
+  rearrangeOffers: function() {
+			console.log('rearrange special offers')
+			var wall = new freewall('.special-offers-view');
+			wall.fitWidth();
+			wall.refresh();
+			wall.reset({
+				selector: '.item',
+				animate: true,
+				cellW: 20,
+				cellH: 20,
+				onResize: function() {
+					wall.fitWidth();
+				}
+			});
+		}.observes('content'),
   style: function() {
 			return 'background-image: url(' + this.get('controller.selected_category.photos').objectAt(0) + ');'
 		}.property('controller.selected_category'),
@@ -272,13 +289,13 @@ App = require('../app');
 
 App.SpecialOffersView = Ember.CollectionView.extend({
   tagName: 'div',
-  classNames: 'special-offers',
+  classNames: 'special-offers-view',
   itemViewClass: Ember.View.extend({
     tagName: 'div',
-    classNames: 'category',
+    classNames: ['special-offer', 'item'],
     classNameBindings: ['emphasis'],
-    emphasis: 'content.emphasis',
-    template: Ember.Handlebars.compile("<img class=\"thumb\" {{bind-attr src=\"view.content.thumb\"}}>\n<h3 class=\"medium-heading\">{{view.content.name}}</h3>\n<div class=\"price\">£{{view.content.fPrice}}</div>")
+    emphasisBinding: 'content.emphasis',
+    template: Ember.Handlebars.compile("<div class=\"thumb-wrapper\">\n	<img class=\"thumb\" {{bind-attr src=\"view.content.thumb\"}}>\n</div>\n<h3 class=\"name medium-heading\">{{view.content.name}}</h3>\n<div class=\"price\">£{{view.content.fPrice}}</div>")
   })
 });
 

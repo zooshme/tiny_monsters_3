@@ -1,0 +1,29 @@
+.special-offers-view {
+	font-size: 0;
+	@include clear();
+
+	.special-offer {
+		width: 200px;
+		height: 200px;
+
+		.thumb-wrapper {
+			width: 100%;
+			background-color: $black;
+
+			.thumb {
+				width: 100%;
+			}
+		}
+
+		.name {
+			background-color: $grey;
+			padding: 6px 16px 10px;
+			margin: 0;
+		}
+	}
+
+	.special-offer.emphasis {
+		width: 50%;
+		height: 300px;
+	}
+}

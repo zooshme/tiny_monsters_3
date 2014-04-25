@@ -2,16 +2,18 @@ App = require '../app'
 
 App.SpecialOffersView = Ember.CollectionView.extend
 	tagName: 'div'
-	classNames: 'special-offers'
+	classNames: 'special-offers-view'
 	itemViewClass: Ember.View.extend
 		tagName: 'div'
-		classNames: 'category'
+		classNames: ['special-offer', 'item']
 		classNameBindings: ['emphasis']
-		emphasis: 'content.emphasis'
+		emphasisBinding: 'content.emphasis'
 
 		template: Ember.Handlebars.compile """
-			<img class="thumb" {{bind-attr src="view.content.thumb"}}>
-			<h3 class="medium-heading">{{view.content.name}}</h3>
+			<div class="thumb-wrapper">
+				<img class="thumb" {{bind-attr src="view.content.thumb"}}>
+			</div>
+			<h3 class="name medium-heading">{{view.content.name}}</h3>
 			<div class="price">£{{view.content.fPrice}}</div>
 			"""
 

@@ -58,7 +58,9 @@ app.get('/api/category/:category_id', function(req, res) {
 app.get('/api/categories', function(req, res) {
     onConnect(function(err, conn) {
         r.table('categories').orderBy('name').run(conn, function(err, cursor) {
+            console.log('Show cursor ', cursor)
             cursor.toArray(function(err, categories) {
+
                 async.map(categories, function(category, callback) {
                     var pattern = /\s/g;
                     var dirName = category.name.toLowerCase().replace(pattern, '_');
@@ -117,21 +119,43 @@ app.get('/api/models/:model_id', function(req, res) {
 app.get('/api/offers', function(req, res) {
     if (req.query.featured && req.query.category_id) {
         onConnect(function(err, conn) {
-            r.table('offers').eqJoin('model',r.table('models')).zip().run(conn, function(err, cursor) {
-                console.log('Error from outerjoin ', err, cursor)
-                // cursor.toArray(function(err1, err2, offers) {
-                //     console.log(err1, err2, offers)
-                //     transformedOffers = offers.map(function(offer) {
-                //         var dir = __dirname + '/public/images/' + offer.brand + '/' + offer.model
-                //         var photos = fs.readdirSync(dir);
-                //         var transformedPhotos = photos.map(function(photo) {
-                //             return dir + '/' + photo
-                //         });
-                //         offer.photos = transformedPhotos
-                //         return offer
-                //     })
-                //     res.json({offers: transformedOffers})
-                // });
+            async.series([function(callback) {
+                r.table('offers')
+                    .filter(r.row('category').eq(req.query.category_id))
+                    .filter(r.row('featured').eq(true))
+                    .run(conn, function(err, cursor) {
+                        cursor.toArray(function(err, offers) {
+                            callback(err, offers)
+                        });
+                    });
+            }, function(callback) {
+                r.table('offers')
+                    .filter(r.row('category').eq(req.query.category_id))
+                    .filter(r.row('featured').eq(true))
+                    .forEach(function(offer) {
+                        return r.table('models').get(offer('model'));
+                    })
+                    .run(conn, function(err, cursor) {
+                        console.log(cursor)
+                        callback(err, cursor)
+                    });
+            }, function(callback) {
+                r.table('offers')
+                    .filter(r.row('category').eq(req.query.category_id))
+                    .filter(r.row('featured').eq(true))
+                    .forEach(function(offer) {
+                        return r.table('brands').get(offer('brand'));
+                    })
+                    .run(conn, function(err, cursor) {
+                        callback(err, cursor)
+                    });
+            }], function(err, results) {
+                res.json({
+                    offers: results[0],
+                    models: typeof results[1] === 'Array' ? results[1] : [ results[1] ],
+                    brands: typeof results[2] === 'Array' ? results[2] : [ results[2] ]
+                });
+                conn.close();
             });
         })
     }

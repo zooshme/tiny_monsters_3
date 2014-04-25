@@ -192,7 +192,7 @@ a {
   /* line 6, ../scss/categories.scss */
   .categories-wrapper .category-expanded {
     padding: 0 26px;
-    height: 600px;
+    #height: 600px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -311,3 +311,33 @@ a {
       background-size: auto 70%;
       background-repeat: no-repeat;
       background-color: white; }
+
+/* line 1, ../scss/special_offers.scss */
+.special-offers-view {
+  font-size: 0; }
+  /* line 30, ../scss/layout.scss */
+  .special-offers-view:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0; }
+  /* line 5, ../scss/special_offers.scss */
+  .special-offers-view .special-offer {
+    width: 200px;
+    height: 200px; }
+    /* line 9, ../scss/special_offers.scss */
+    .special-offers-view .special-offer .thumb-wrapper {
+      width: 100%;
+      background-color: black; }
+      /* line 13, ../scss/special_offers.scss */
+      .special-offers-view .special-offer .thumb-wrapper .thumb {
+        width: 100%; }
+    /* line 18, ../scss/special_offers.scss */
+    .special-offers-view .special-offer .name {
+      background-color: #40423f;
+      padding: 6px 16px 10px;
+      margin: 0; }
+  /* line 25, ../scss/special_offers.scss */
+  .special-offers-view .special-offer.emphasis {
+    width: 50%;
+    height: 300px; }

@@ -25,3 +25,12 @@
 	background-color: $black;
 	color: $white;
 }
+
+@mixin clear {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+		height: 0;
+	}
+}
