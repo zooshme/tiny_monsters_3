@@ -58,7 +58,6 @@ app.get('/api/category/:category_id', function(req, res) {
 app.get('/api/categories', function(req, res) {
     onConnect(function(err, conn) {
         r.table('categories').orderBy('name').run(conn, function(err, cursor) {
-            console.log('Show cursor ', cursor)
             cursor.toArray(function(err, categories) {
 
                 async.map(categories, function(category, callback) {
@@ -117,11 +116,11 @@ app.get('/api/models/:model_id', function(req, res) {
 });
 
 app.get('/api/offers', function(req, res) {
-    if (req.query.featured && req.query.category_id) {
+    if (req.query.featured && req.query.category) {
         onConnect(function(err, conn) {
             async.series([function(callback) {
                 r.table('offers')
-                    .filter(r.row('category').eq(req.query.category_id))
+                    .filter(r.row('category').eq(req.query.category))
                     .filter(r.row('featured').eq(true))
                     .run(conn, function(err, cursor) {
                         cursor.toArray(function(err, offers) {
@@ -130,18 +129,17 @@ app.get('/api/offers', function(req, res) {
                     });
             }, function(callback) {
                 r.table('offers')
-                    .filter(r.row('category').eq(req.query.category_id))
+                    .filter(r.row('category').eq(req.query.category))
                     .filter(r.row('featured').eq(true))
                     .forEach(function(offer) {
                         return r.table('models').get(offer('model'));
                     })
                     .run(conn, function(err, cursor) {
-                        console.log(cursor)
                         callback(err, cursor)
                     });
             }, function(callback) {
                 r.table('offers')
-                    .filter(r.row('category').eq(req.query.category_id))
+                    .filter(r.row('category').eq(req.query.category))
                     .filter(r.row('featured').eq(true))
                     .forEach(function(offer) {
                         return r.table('brands').get(offer('brand'));
@@ -150,21 +148,42 @@ app.get('/api/offers', function(req, res) {
                         callback(err, cursor)
                     });
             }], function(err, results) {
-                var offers, models, brands;
-
+                //var offers, models, brands;
+                
+                console.log(typeof results[0], results[0]);
 
                 offers = results[0];
                 models = results[1];
                 brands = results[2];
 
-                console.log(typeof models, typeof brands);
+                if (typeof offers == 'object' && offers.hasOwnProperty('id')) {
+                    offers = [ offers ];
+                } else if (typeof offers == 'object') {
+                    offers = offers;
+                } else {
+                    offers = [];
+                }
 
+                if (typeof brands == 'array') {
+                    brands = brands;
+                } else if (typeof brands == 'object' && brands.hasOwnProperty('id')) {
+                    brands = [ brands ];
+                } else {
+                    brands = [];
+                }
 
+                if (typeof models == 'array') {
+                    models = models;
+                } else if (typeof models == 'object' && models.hasOwnProperty('id')) {
+                    models = [ models ];
+                } else {
+                    models = [];
+                }
 
                 res.json({
-                    offers: results[0],
-                    models: typeof results[1] === 'array' ? results[1] : [ results[1] ],
-                    brands: typeof results[2] === 'array' ? results[2] : [ results[2] ]
+                    offers: offers,
+                    models: models,
+                    brands: brands
                 });
                 conn.close();
             });

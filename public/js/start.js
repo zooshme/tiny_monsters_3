@@ -36,9 +36,8 @@ App.IndexController = Ember.Controller.extend({
   selected_category: null,
   special_offers: [],
   getSpecialOffers: function(category_id) {
-			console.log('Getting Special Offers')
 			var store = this.get('store');
-			var special_offers = store.find('offer', {category_id: category_id, featured: true});
+			var special_offers = store.find('offer', {category: category_id, featured: true});
 			return special_offers;
 		}
 });
@@ -196,8 +195,11 @@ App.CategoriesView = Ember.CollectionView.extend({
 			}.property('content.photos@each'),
     template: Ember.Handlebars.compile("<img class=\"thumb\" {{bind-attr src=\"view.thumb\"}}>\n<h3 class=\"medium-heading name\">{{view.content.name}}</h3>"),
     click: function() {
+      var category_id, special_offers;
       this.set('controller.selected_category', this.get('content'));
-      return this.set('controller.special_offers', this.get('controller').getSpecialOffers(this.get('content.id')));
+      category_id = this.get('content.id');
+      special_offers = this.get('controller').getSpecialOffers(category_id);
+      return this.set('controller.special_offers', special_offers);
     }
   })
 });
@@ -270,24 +272,6 @@ var App;
 App = require('../app');
 
 App.SpecialOffersView = Ember.CollectionView.extend({
-  didInsertElement: function() {
-    return this.rearrangeOffers();
-  },
-  rearrangeOffers: function() {
-			setTimeout(function() {
-				var wall = new freewall('.special-offers-view');
-				wall.reset({
-					selector: '.item',
-					animate: true,
-					cellW: 20,
-					cellH: 20,
-					onResize: function() {
-						wall.fitWidth();
-					}
-				});
-				wall.fitWidth();
-			}, 100);			
-		}.observes('content'),
   tagName: 'div',
   classNames: 'special-offers-view',
   itemViewClass: Ember.View.extend({

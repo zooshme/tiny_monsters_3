@@ -23,7 +23,9 @@ App.CategoriesView = Ember.CollectionView.extend
 			"""
 		click: ->
 			@.set 'controller.selected_category', @get 'content'
-			@.set('controller.special_offers', @.get('controller').getSpecialOffers(@.get('content.id')))
+			category_id = @.get 'content.id'
+			special_offers = @.get('controller').getSpecialOffers(category_id)
+			@.set 'controller.special_offers', special_offers
 
 
 

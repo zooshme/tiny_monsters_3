@@ -1,26 +1,6 @@
 App = require '../app'
 
 App.SpecialOffersView = Ember.CollectionView.extend
-	didInsertElement: ->
-		
-		@rearrangeOffers()
-
-	rearrangeOffers: `function() {
-			setTimeout(function() {
-				var wall = new freewall('.special-offers-view');
-				wall.reset({
-					selector: '.item',
-					animate: true,
-					cellW: 20,
-					cellH: 20,
-					onResize: function() {
-						wall.fitWidth();
-					}
-				});
-				wall.fitWidth();
-			}, 100);			
-		}.observes('content')`
-
 	tagName: 'div'
 	classNames: 'special-offers-view'
 	itemViewClass: Ember.View.extend
